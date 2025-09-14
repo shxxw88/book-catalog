@@ -1,1 +1,89 @@
+.catalog {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: left;
+  margin-top: 2rem;
+}
 
+.book-card {
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding-top: 0.5rem;
+  width: 225px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-top: 2px solid #000000;
+}
+
+.book-info {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-size: 16px
+}
+
+.book-title {
+  flex: 1;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.book-link {
+  display: block;
+  background: #000000;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.6rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.book-link:hover {
+  background: #b7e857;
+  color: black;
+  border-radius: 0 0 8px 8px;
+}
+
+
+.new-button {
+  width: 225px;
+  height: auto;
+  border: 2px dashed #909090;
+  border-radius: 8px;
+  background-color: #f6f6f6;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: roboto mono, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-button:hover {
+  background-color: #b7e857;
+  cursor: pointer;
+}
+
+.new-button .plus {
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  color: #606060;
+}
+
+.new-button .label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #606060;
+}

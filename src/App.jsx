@@ -29,7 +29,6 @@ export default function App() {
       <header><h1>Book Catalog</h1></header>
 
       <div className="catalog">
-        <NewButton onClick={() => alert("This will open a form to add a new book!")} />
         {books.map((book, i) => (
           <BookCard
             key={i}
@@ -39,6 +38,7 @@ export default function App() {
             link={book.url}
           />
         ))}
+        <NewButton onClick={() => alert()} />
       </div>
     </>
   );
