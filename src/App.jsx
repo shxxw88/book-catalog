@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import BookCard from "./components/BookCard";
+import NewButton from "./components/NewButton";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const isbns = ["9781936323999", "9781119641537"];
+
+    (async () => {
+      try {
+        const results = await Promise.all(
+          isbns.map(isbn =>
+            fetch(`https://api.itbook.store/1.0/books/${isbn}`)
+              .then(res => res.json())
+          )
+        );
+        setBooks(results);
+      } catch (err) {
+        console.error("Error fetching books:", err);
+      }
+    })();
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <header><h1>Book Catalog</h1></header>
 
-export default App
+      <div className="catalog">
+        <NewButton onClick={() => alert("This will open a form to add a new book!")} />
+        {books.map((book, i) => (
+          <BookCard
+            key={i}
+            title={book.title}
+            author={book.authors || "Unknown"}
+            image={book.image}
+            link={book.url}
+          />
+        ))}
+      </div>
+    </>
+  );
+}
